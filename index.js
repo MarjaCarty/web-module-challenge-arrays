@@ -196,8 +196,8 @@ function getAverageWordLength(arr){
     for (let i = 0; i < arr.length; i++) {
       splitArr.push(arr[i].split(" "));
     }
-    for (let j = 0; j < newArr.length; j++) {
-        lengthsArr.push(newArr[j].length);
+    for (let j = 0; j < splitArr.length; j++) {
+        lengthsArr.push(splitArr[j].length);
         }
 
     return lengthsArr.reduce(reducer, 0) / arr.length;
@@ -286,8 +286,26 @@ var regionalFlavors = ["Pink Bubblegum",
     "Chocolate Chocolate Chip Cheesecake",
     "Caramel 'n' Cookies"]
 
-function getRandomFlavors(/*code here*/){
+function getRandomFlavors(arr1, arr2, arr3, arr4){
+     let finalArr = [];
+    
+    function shuffle(arr) {
 
-    /*code here*/
+        for (let i = arr.length - 1; i > 0; i--) {
+            let random = Math.floor(Math.random() * (i + 1));
+            let temp = arr[i];
+            arr[i] = arr[random];
+            arr[random] = temp;
+        }
+        return arr;
+    }
 
+    finalArr.push(shuffle(arr1).splice(0, 8));
+    finalArr.push(shuffle(arr2).splice(0, 8));
+    finalArr.push(shuffle(arr3).splice(0, 8));
+    finalArr.push(shuffle(arr4).splice(0, 7));
+
+    return finalArr.flat();
 }
+
+console.log(getRandomFlavors(originalFlavors, seasonalFlavors, regionalFlavors, newFlavors));
